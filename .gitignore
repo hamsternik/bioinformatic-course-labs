@@ -1,0 +1,10 @@
+#____ Java ____#
+*.class
+
+#____ Packages ____#
+*.jar
+
+#____ Intellij Idea ____#
+*.iml
+.idea/
+/out/*
