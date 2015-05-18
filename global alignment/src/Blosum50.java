@@ -4,8 +4,9 @@ import java.io.*;
 
 public class Blosum50 {
 
-    String[] aminoacids = { "A", "R", "N", "D", "C", "Q", "E", "G", "H", "I", "L", "K", "M", "F", "P", "S", "T", "W", "Y", "V"};
-    Map<String, Integer> aminoacidsMap;
+    String[] aminoacids = { "A", "R", "N", "D", "C", "Q", "E", "G", "H", "I", "L", "K", "M", "F", "P", "S",
+                            "T", "W", "Y", "X"};
+    private Map<String, Integer> aminoacidsMap;
 
     private int[][] blosum50;
     private String file;
@@ -25,9 +26,10 @@ public class Blosum50 {
             while (sc.hasNextLine()) {
                 ++rows;
                 Scanner columnReader = new Scanner(sc.nextLine());
+                columns = 0;
                 while (columnReader.hasNextInt()) {
                     ++columns;
-                    columnReader.nextLine();
+                    columnReader.nextInt();
                 }
             }
 
@@ -41,15 +43,14 @@ public class Blosum50 {
                         blosum50[i][j] = sc.nextInt();
             sc.close();
         } catch (IOException e) {
-            System.out.println("Choosed file is not exist!\n");
-            e.printStackTrace();
+            System.out.println("Choosed file is not exist!\n");  e.printStackTrace();
         }
     }
 
     private void makeAminoacidsMap() {
         aminoacidsMap = new HashMap<String, Integer>();
         for (int i = 0; i < columns; ++i)
-            aminoacidsMap.put(aminoacids[i], new Integer(i));
+                aminoacidsMap.put(aminoacids[i], i);
     }
 
     public void printBlosumMatrix() {
